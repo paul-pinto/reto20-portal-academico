@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Estudiante · Portal académico{% endblock %}
+{% block content %}
+<h1>Panel del estudiante</h1>
+<p class="muted">Solo puedes gestionar tus propios cursos y entregas.</p>
+
+<h2>Mis cursos</h2>
+<div class="grid">
+  {% for course in courses %}
+    <article class="card">
+      <h3>{{ course.nombre }}</h3>
+      <p>{{ course.course_id }}</p>
+      <a class="button" href="{{ url_for('portal.course_detail', course_id=course.course_id) }}">Abrir curso</a>
+    </article>
+  {% else %}
+    <p>No hay cursos asignados.</p>
+  {% endfor %}
+</div>
+
+<h2>Mis entregas</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Actividad</th><th>Curso</th><th>Estado</th><th>Fecha</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for s in submissions %}
+      <tr>
+        <td>{{ s.activity_id }}</td>
+        <td>{{ s.course_id }}</td>
+        <td>{{ s.estado }}</td>
+        <td>{{ s.submitted_at }}</td>
+        <td><a href="{{ url_for('portal.submission_detail', activity_id=s.activity_id, student_id=s.student_id) }}">Ver</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

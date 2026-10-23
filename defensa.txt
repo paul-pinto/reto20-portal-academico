@@ -1,0 +1,24 @@
+LIMPIAR CREDENCIALES ANTIGUOS
+
+Remove-Item Env:AWS_ACCESS_KEY_ID -ErrorAction SilentlyContinue
+Remove-Item Env:AWS_SECRET_ACCESS_KEY -ErrorAction SilentlyContinue
+Remove-Item Env:AWS_SESSION_TOKEN -ErrorAction SilentlyContinue
+Remove-Item Env:AWS_SECURITY_TOKEN -ErrorAction SilentlyContinue
+
+
+INGRESO
+
+$env:AWS_ACCESS_KEY_ID=""
+$env:AWS_SECRET_ACCESS_KEY=""
+$env:AWS_SESSION_TOKEN=""
+$env:AWS_DEFAULT_REGION="us-east-1"
+
+
+PRUEBA
+
+python -c "import boto3; print(boto3.client('sts', region_name='us-east-1').get_caller_identity())"
+
+
+EJECUCIÓN
+
+python run.py

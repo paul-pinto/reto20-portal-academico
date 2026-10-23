@@ -1,0 +1,458 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{appendix}
+
+\geometry{top=2.5cm,bottom=2.5cm,left=2.7cm,right=2.7cm}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\definecolor{azulAWS}{RGB}{35,47,62}
+\definecolor{naranjaAWS}{RGB}{255,153,0}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=azulAWS,
+    urlcolor=azulAWS,
+    citecolor=azulAWS,
+    pdftitle={Portal académico en la nube},
+    pdfauthor={Nombre del estudiante}
+}
+
+\graphicspath{{docs/evidencias/}{./}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Computación en la Nube}
+\rhead{Portal académico en la nube}
+\cfoot{\thepage}
+\setlength{\headheight}{15pt}
+
+\titleformat{\section}{\Large\bfseries\color{azulAWS}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{azulAWS}}{\thesubsection.}{0.5em}{}
+
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\setlength{\textfloatsep}{7pt plus 2pt minus 2pt}
+\setlength{\floatsep}{7pt plus 2pt minus 2pt}
+\setlength{\intextsep}{7pt plus 2pt minus 2pt}
+
+\newcommand{\universidad}{Universidad Católica Boliviana}
+\newcommand{\maestria}{Maestría en Ciencia de Datos e Inteligencia Artificial}
+\newcommand{\modulo}{Asignatura: [MCI-511] Computación en la Nube}
+\newcommand{\tituloTrabajo}{Portal académico en la nube}
+\newcommand{\subtituloTrabajo}{Reto 20 -- Proyecto Final}
+\newcommand{\autor}{Jhonny Paul Pinto Phillips}
+\newcommand{\correo}{jhonny.pinto@ucb.edu.bo}
+\newcommand{\docente}{Fabrizio Gustavo Bellido Parra}
+\newcommand{\fechaEntrega}{23 de octubre de 2026}
+\newcommand{\servicio}[1]{\textbf{#1}}
+\newcommand{\codigo}[1]{\textnormal{\detokenize{#1}}}
+
+\newcommand{\figuraevidencia}[4][0.90\textwidth]{
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=#1]{#2}
+    \caption{#3}
+    \label{#4}
+\end{figure}
+}
+
+
+% Inserta la evidencia si el archivo existe; si no, deja una caja visible sin romper la compilación.
+\newcommand{\evidenciasafe}[4][0.90\textwidth]{
+\begin{figure}[H]
+    \centering
+    \IfFileExists{docs/evidencias/#2}{
+        \includegraphics[width=#1]{#2}
+    }{
+        \fbox{\parbox[c][4cm][c]{0.88\textwidth}{\centering
+        Falta el archivo: \textnormal{docs/evidencias/#2}}}
+    }
+    \caption{#3}
+    \label{#4}
+\end{figure}
+}
+
+\newcommand{\parevidenciasafe}[7]{
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.485\textwidth}
+        \centering
+        \IfFileExists{docs/evidencias/#1}{
+            \includegraphics[width=\linewidth]{#1}
+        }{
+            \fbox{\parbox[c][3.7cm][c]{0.94\linewidth}{\centering
+            Falta: \textnormal{#1}}}
+        }
+        \caption{#2}
+        \label{#3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.485\textwidth}
+        \centering
+        \IfFileExists{docs/evidencias/#4}{
+            \includegraphics[width=\linewidth]{#4}
+        }{
+            \fbox{\parbox[c][3.7cm][c]{0.94\linewidth}{\centering
+            Falta: \textnormal{#4}}}
+        }
+        \caption{#5}
+        \label{#6}
+    \end{subfigure}
+    \caption{#7}
+\end{figure}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\Large \universidad \par}
+    \vspace{0.4cm}
+    {\large \maestria \par}
+    \vspace{0.4cm}
+    {\large \modulo \par}
+    \vspace{2.1cm}
+	\includegraphics[width=6cm]{ucb-logo.png}
+	
+    \vfill
+
+    {\Huge\bfseries\color{azulAWS} \tituloTrabajo \par}
+    \vspace{0.4cm}
+    {\Large\bfseries \subtituloTrabajo \par}
+
+    \vspace{1.5cm}
+
+    \begin{tabular}{rl}
+        \textbf{Estudiante:} & \autor \\
+        \textbf{Correo:} & \correo \\
+        \textbf{Reto:} & Reto 20 -- Portal académico en la nube \\
+        \textbf{Docente:} & \docente \\
+        \textbf{Fecha:} & \fechaEntrega \\
+    \end{tabular}
+
+    \vfill
+    {\large Santa Cruz de la Sierra -- Bolivia\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Resumen ejecutivo}
+
+El proyecto responde a la necesidad de contar con un portal académico en el que estudiantes y docentes puedan trabajar con cursos, actividades y entregas sin exponer información ni archivos que no les correspondan. El problema central fue garantizar que cada usuario acceda únicamente a los recursos autorizados para su rol, manteniendo además un registro de los accesos relevantes.
+
+Se construyó una solución funcional en la nube que centraliza los datos académicos, mantiene los archivos de entrega en almacenamiento privado y registra eventos de acceso y auditoría. La aplicación diferencia las funciones de estudiantes y docentes y valida los permisos en el servidor antes de mostrar información o entregar acceso a un archivo.
+
+La prueba de aceptación fue satisfactoria: el estudiante pudo acceder a su propia entrega y fue bloqueado al intentar consultar una entrega ajena; del mismo modo, el docente accedió al curso que tenía asignado y recibió una respuesta HTTP 403 al intentar ingresar a un curso ajeno. En conjunto, las cuatro pruebas principales definidas para el proyecto se cumplieron correctamente.
+
+\section{Problema, objetivos y alcance}
+
+\subsection{Problema}
+
+El caso de uso representa un portal académico real en el que intervienen dos grupos de usuarios: \textbf{estudiantes}, que consultan cursos y gestionan sus propias entregas, y \textbf{docentes}, que revisan actividades y entregas de los cursos que tienen asignados. El riesgo principal consiste en que un usuario pueda acceder a información o archivos pertenecientes a otra persona o a un curso que no le corresponde.
+
+La solución debe, por tanto, controlar el acceso a información sensible y archivos privados, mantener trazabilidad de los accesos y operar sobre una infraestructura de nube. La prueba de aceptación definida exige que: (1) un estudiante pueda acceder a su propia entrega pero no a la de otro estudiante; y (2) un docente pueda revisar su propio curso pero no un curso ajeno.
+
+\subsection{Objetivo general}
+
+Diseñar e implementar un portal académico en AWS que permita gestionar usuarios, cursos, actividades, entregas y revisiones, incorporando controles de acceso, almacenamiento privado de archivos y mecanismos básicos de observabilidad.
+
+\subsection{Objetivos específicos}
+
+\begin{itemize}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item Desplegar una aplicación web Flask en Amazon EC2.
+    \item Implementar persistencia de datos mediante Amazon DynamoDB.
+    \item Almacenar entregas académicas de forma privada en Amazon S3.
+    \item Generar URLs prefirmadas para acceso temporal a archivos.
+    \item Aplicar autorización diferenciada para estudiantes y docentes.
+    \item Registrar eventos de auditoría en Amazon CloudWatch.
+    \item Validar el cumplimiento de los criterios de aceptación definidos para el proyecto.
+\end{itemize}
+
+\subsection{Alcance}
+
+El proyecto contempla un entorno académico demostrativo con datos sintéticos. Incluye autenticación, autorización por rol, gestión de cursos y actividades, acceso a entregas, revisión por parte de docentes, almacenamiento privado y auditoría de eventos relevantes.
+
+No se contemplan funcionalidades de producción como alta disponibilidad multi-AZ, dominio personalizado, certificado TLS gestionado, balanceador de carga, recuperación ante desastres o integración con un proveedor de identidad externo.
+
+\section{Arquitectura de la solución}
+
+\subsection{Arquitectura general}
+
+La arquitectura sigue un enfoque basado en servicios administrados de AWS y una aplicación web desplegada sobre una instancia EC2.
+
+\evidenciasafe[0.86\textwidth]{01_arquitectura_general_drawio.png}
+{Arquitectura general del portal académico en AWS.}
+{fig:arquitectura}
+
+El flujo principal es el siguiente:
+
+\begin{enumerate}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item El usuario accede al portal mediante Internet.
+    \item El tráfico ingresa a la instancia EC2 a través de las reglas definidas en el Security Group.
+    \item Nginx recibe las solicitudes HTTP y las redirige a Gunicorn.
+    \item Gunicorn ejecuta la aplicación Flask.
+    \item Flask consulta DynamoDB para obtener usuarios, cursos, actividades, entregas y revisiones.
+    \item Cuando un usuario autorizado solicita un archivo privado, Flask genera una URL prefirmada de S3.
+    \item Los eventos relevantes de la aplicación se registran y envían a CloudWatch.
+    \item IAM autoriza a la instancia EC2 a consumir los servicios AWS necesarios mediante un Instance Profile.
+\end{enumerate}
+
+\subsection{Servicios AWS utilizados}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Servicios AWS: elección y alternativa descartada}
+\label{tab:servicios}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.2cm} X X}
+\toprule
+Servicio & Motivo de elección & Alternativa descartada \\
+\midrule
+Amazon EC2 & Permitió desplegar Flask, Gunicorn y Nginx con control completo del servidor. & Elastic Beanstalk, por restricciones de permisos del Learner Lab. \\
+Amazon DynamoDB & Adecuado para un modelo académico simple, sin administrar un motor relacional y con facturación bajo demanda. & Amazon RDS, innecesario para el alcance y con mayor carga operativa. \\
+Amazon S3 & Diseñado para archivos privados, versionado y generación de URLs prefirmadas. & Almacenar archivos en EC2, menos durable y desacoplado. \\
+Amazon CloudWatch & Centraliza logs y eventos de auditoría de la aplicación. & Logs únicamente locales en EC2, con menor visibilidad y trazabilidad. \\
+AWS IAM & Permite que EC2 acceda a AWS mediante LabRole/LabInstanceProfile sin credenciales estáticas. & Claves de acceso guardadas en el servidor, opción descartada por seguridad. \\
+Amazon VPC / Security Groups & Aíslan la instancia y restringen el tráfico por puerto y origen. & Exponer servicios sin controles de red específicos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Componentes de software}
+
+Dentro de Amazon EC2 se utilizaron los siguientes componentes:
+
+\begin{itemize}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item \textbf{Nginx}: proxy inverso y punto de entrada HTTP.
+    \item \textbf{Gunicorn}: servidor WSGI.
+    \item \textbf{Flask}: framework de aplicación web.
+    \item \textbf{Boto3}: SDK de AWS utilizado desde Python.
+    \item \textbf{systemd}: administración de los servicios de aplicación.
+    \item \textbf{Amazon CloudWatch Agent}: envío de logs del servidor a CloudWatch.
+\end{itemize}
+
+\section{Implementación}
+
+\subsection{Secuencia de despliegue}
+
+La implementación se realizó en el siguiente orden: (1) creación y carga de datos en DynamoDB; (2) creación y endurecimiento del bucket S3; (3) despliegue de la instancia EC2 con LabInstanceProfile; (4) instalación de Flask, Gunicorn y Nginx; (5) configuración del servicio de systemd; (6) configuración del CloudWatch Agent; y (7) ejecución de las pruebas de aceptación desde el portal público.
+
+
+\subsection{Capa de cómputo: Amazon EC2}
+
+La aplicación fue desplegada en una instancia Amazon Linux 2023. Se configuró un servicio de systemd para ejecutar Gunicorn de forma persistente y Nginx como proxy inverso.
+
+La instancia utiliza un IAM Instance Profile para acceder a los servicios de AWS sin almacenar credenciales estáticas dentro del servidor.
+
+\parevidenciasafe
+{02_ec2_instancia_running.png}{Instancia EC2 en ejecución.}{fig:ec2-running}
+{04_ec2_iam_instance_profile.png}{IAM Instance Profile asociado a la instancia.}{fig:ec2-iam}
+{Capa de cómputo y autorización de la instancia EC2.}
+
+\subsection{Persistencia: Amazon DynamoDB}
+
+Se implementó una tabla denominada \codigo{portal_academico}, utilizando un diseño single-table con:
+
+\begin{itemize}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item clave de partición \codigo{PK};
+    \item clave de ordenamiento \codigo{SK};
+    \item índice secundario global \codigo{GSI1};
+    \item modo de facturación \textit{PAY\_PER\_REQUEST}.
+\end{itemize}
+
+Las principales entidades almacenadas son USER, COURSE, ENROLLMENT, ACTIVITY, SUBMISSION y REVIEW.
+
+\parevidenciasafe
+{09_dynamodb_claves_pk_sk.png}{Claves PK y SK de la tabla.}{fig:dynamodb-pksk}
+{10_dynamodb_gsi1.png}{Índice secundario global GSI1.}{fig:dynamodb-gsi}
+{Diseño single-table implementado en Amazon DynamoDB.}
+
+\subsection{Almacenamiento privado: Amazon S3}
+
+Los archivos de entrega se almacenan en un bucket S3 privado. La configuración incluye bloqueo de acceso público, cifrado SSE-S3, versionado habilitado y objetos PDF con tipo de contenido \codigo{application/pdf}.
+
+La aplicación no expone directamente los objetos de S3. Antes de generar una URL prefirmada, el backend valida que el usuario tenga autorización para acceder al archivo solicitado.
+
+\parevidenciasafe
+{18_s3_block_public_access.png}{Bloqueo de acceso público del bucket.}{fig:s3-block}
+{21_s3_estructura_entregas.png}{Estructura de almacenamiento de las entregas.}{fig:s3-structure}
+{Configuración de seguridad y organización del almacenamiento en Amazon S3.}
+
+\subsection{Autenticación y autorización}
+
+El portal implementa autenticación mediante sesión y contraseñas almacenadas de forma segura utilizando PBKDF2-SHA256.
+
+La autorización se valida en el backend con reglas específicas: un estudiante puede acceder únicamente a una entrega cuando el identificador del estudiante coincide con el usuario autenticado, mientras que un docente puede acceder únicamente a un curso cuando dicho curso tiene asignado a ese docente.
+
+\subsection{Despliegue de la aplicación}
+
+La aplicación se ejecuta mediante Gunicorn sobre el puerto local 8000 y Nginx expone el portal mediante el puerto HTTP 80.
+
+\[
+\text{Internet} \rightarrow \text{Nginx} \rightarrow \text{Gunicorn} \rightarrow \text{Flask}
+\]
+
+\section{Pruebas y resultados}
+
+\subsection{Criterios de aceptación}
+
+\begin{table}[H]
+\centering
+\caption{Resultados de las pruebas de aceptación}
+\label{tab:pruebas}
+\begin{tabularx}{\textwidth}{X X c}
+\toprule
+Prueba & Resultado esperado & Estado \\
+\midrule
+Estudiante accede a su propia entrega & Acceso permitido & Cumple \\
+Estudiante accede a entrega ajena & HTTP 403 & Cumple \\
+Docente accede a su propio curso & Acceso permitido & Cumple \\
+Docente accede a curso ajeno & HTTP 403 & Cumple \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Prueba de estudiante}
+
+Se verificó que el usuario \codigo{estudiante-001} pudiera acceder a su propia entrega y abrir el archivo privado mediante una URL prefirmada. También se intentó acceder a una entrega correspondiente a otro estudiante. El backend respondió con HTTP 403 y generó el evento de auditoría correspondiente.
+
+\subsection{Prueba de docente}
+
+Se verificó que el usuario \codigo{profesor-001} pudiera acceder al curso \codigo{CLOUD101}, del cual es responsable. Al intentar acceder a \codigo{DATA101}, el sistema bloqueó la solicitud con HTTP 403.
+
+\parevidenciasafe
+{34_prueba_estudiante_denegada.png}{Estudiante: intento de acceso a una entrega ajena.}{fig:test-student-403}
+{36_prueba_profesor_denegada.png}{Docente: intento de acceso a un curso ajeno.}{fig:test-teacher-403}
+{Pruebas de autorización negativa con respuesta HTTP 403.}
+
+\subsection{Acceso a archivos privados}
+
+Cuando un usuario autorizado solicita un archivo, la aplicación genera una URL prefirmada de duración limitada. De esta manera, el bucket permanece privado y el usuario no necesita permisos directos sobre S3.
+
+Como resultado cuantitativo, se ejecutaron \textbf{4 pruebas principales de aceptación y las 4 cumplieron el resultado esperado (100\%)}. Los dos intentos de acceso no autorizado fueron rechazados mediante HTTP 403, mientras que los dos accesos autorizados se completaron correctamente.
+
+\evidenciasafe[0.84\textwidth]{28_acceso_archivo_presigned_url.png}
+{Acceso temporal a un archivo privado mediante una URL prefirmada de Amazon S3.}
+{fig:presigned}
+
+\section{Seguridad, observabilidad y costos}
+
+\subsection{Seguridad}
+
+Las principales medidas implementadas fueron:
+
+\begin{itemize}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item S3 con bloqueo total de acceso público y cifrado SSE-S3.
+    \item Autorización aplicada en el backend y contraseñas almacenadas mediante hash PBKDF2-SHA256.
+    \item Uso de \textbf{LabRole/LabInstanceProfile} para que EC2 consuma servicios AWS sin almacenar claves de acceso estáticas.
+    \item La clave secreta de sesión de Flask se mantiene como variable de entorno del servicio y no se expone en el repositorio ni en el código fuente.
+    \item SSH limitado a una dirección IP específica mediante regla /32.
+    \item Exposición pública únicamente de los puertos necesarios.
+\end{itemize}
+
+\subsection{Observabilidad y auditoría}
+
+La aplicación genera eventos de auditoría como \codigo{login\_success}, \codigo{login\_failed}, \codigo{view\_submission}, \codigo{presigned\_url\_generated}, \codigo{forbidden\_course}, \codigo{forbidden\_submission}, \codigo{forbidden\_download} y \codigo{logout}.
+
+Los logs son enviados mediante CloudWatch Agent al grupo \codigo{/reto20/portal-academico}.
+
+\evidenciasafe[0.95\textwidth]{38_cloudwatch_log_stream.png}
+{Flujo de logs y eventos de auditoría centralizados en Amazon CloudWatch.}
+{fig:cloudwatch}
+
+\subsection{Costos y entorno académico}
+
+La solución fue implementada dentro de AWS Academy Learner Lab. Se priorizaron servicios y configuraciones adecuadas para un entorno académico y de bajo costo, utilizando una instancia EC2 pequeña, DynamoDB bajo demanda y almacenamiento S3 reducido. El consumo fue controlado desde el panel del Learner Lab, cuya captura se conserva como evidencia.
+
+\evidenciasafe[0.62\textwidth]{47_learner_lab_creditos.png}
+{Consumo y créditos disponibles en AWS Academy Learner Lab.}
+{fig:creditos}
+
+\section{Limitaciones y ruta alternativa}
+
+\subsection{Servicios no habilitados y ruta alternativa}
+
+La ruta prevista contemplaba Elastic Beanstalk como opción administrada de despliegue. Debido a las restricciones de permisos asociadas al LabRole del AWS Academy Learner Lab, se utilizó \textbf{Amazon EC2 como ruta alternativa}. Esta decisión permitió completar el despliegue manteniendo control directo sobre Nginx, Gunicorn, Flask y el agente de CloudWatch.
+
+\subsection{Dirección IPv4 pública dinámica}
+
+La instancia no utiliza Elastic IP, por lo que la dirección IPv4 pública puede cambiar cuando la instancia es detenida y posteriormente iniciada.
+
+\subsection{Uso de HTTP}
+
+La demostración académica se implementó mediante HTTP. En un entorno de producción debería incorporarse HTTPS utilizando un certificado TLS válido.
+
+\subsection{Escalabilidad}
+
+La implementación actual utiliza una única instancia EC2 y no incorpora balanceo de carga ni autoescalado. Esto es suficiente para el alcance del reto, pero no representa una arquitectura de alta disponibilidad.
+
+\section{Conclusiones y limpieza}
+
+El proyecto permitió implementar satisfactoriamente un portal académico funcional en AWS integrando cómputo, persistencia, almacenamiento, seguridad y observabilidad. La principal lección aprendida fue que la seguridad no depende únicamente de ocultar opciones en la interfaz: las reglas deben validarse en el backend antes de entregar datos o archivos.
+
+La separación entre datos estructurados en DynamoDB y archivos privados en S3 permitió utilizar cada servicio según su propósito. Las URLs prefirmadas mantuvieron los objetos privados y otorgaron acceso temporal únicamente después de validar la autorización.
+
+Las cuatro pruebas principales de aceptación se cumplieron. Asimismo, CloudWatch permitió verificar accesos permitidos, intentos denegados y generación de URLs prefirmadas.
+
+En una implementación de producción se incorporaría HTTPS, dominio personalizado, alta disponibilidad, balanceo de carga y un servicio especializado de identidad.
+
+\subsection{Limpieza de recursos}
+
+Al finalizar la demostración, los recursos que generan consumo deben ser eliminados o detenidos. La evidencia final se registra en la captura correspondiente al estado de los recursos. Si la instancia debe permanecer disponible hasta la exposición, esta evidencia debe actualizarse inmediatamente después de la defensa.
+
+\evidenciasafe[0.72\textwidth]{48_estado_final_recursos.png}
+{Estado final de los recursos después de la demostración.}
+{fig:limpieza}
+
+\section{Referencias}
+
+\begin{itemize}[leftmargin=*,itemsep=1.5pt,topsep=2pt]
+    \item Amazon Web Services. Documentación de Amazon EC2.
+    \item Amazon Web Services. Documentación de Amazon DynamoDB.
+    \item Amazon Web Services. Documentación de Amazon S3.
+    \item Amazon Web Services. Documentación de Amazon CloudWatch.
+    \item Amazon Web Services. Documentación de AWS IAM.
+    \item Flask Documentation.
+    \item Gunicorn Documentation.
+    \item Nginx Documentation.
+\end{itemize}
+
+\clearpage
+\appendix
+\section{Evidencias de implementación}
+
+Las evidencias completas de configuración y funcionamiento se encuentran almacenadas en la carpeta \codigo{docs/evidencias}. En el cuerpo principal se incluyeron únicamente las capturas necesarias para demostrar arquitectura, persistencia, almacenamiento privado, autorización, observabilidad y control de costos.
+
+Cuando corresponde, las capturas deben conservar visible la región de AWS y la fecha o contexto temporal suficiente para demostrar que pertenecen a la ejecución del proyecto.
+
+Como respaldo adicional, el conjunto de evidencias incluye: detalles de EC2 y Security Groups; registros y entidades de DynamoDB; configuración de cifrado, versionado y objetos de S3; pantallas de autenticación y navegación por rol; casos permitidos y denegados; eventos de CloudWatch; estado del CloudWatch Agent, Gunicorn y Nginx; créditos del Learner Lab; y estado final de los recursos.
+
+% Evidencias técnicas adicionales opcionales para el anexo:
+% \evidenciasafe{44_cloudwatch_agent_status.png}{Estado del agente de CloudWatch.}{fig:ev44}
+% \evidenciasafe{45_gunicorn_service_status.png}{Estado del servicio de aplicación.}{fig:ev45}
+% \evidenciasafe{46_nginx_service_status.png}{Estado del servicio Nginx.}{fig:ev46}
+% \evidenciasafe{47_learner_lab_creditos.png}{Créditos disponibles en AWS Academy Learner Lab.}{fig:ev47}
+% \evidenciasafe{48_estado_final_recursos.png}{Estado final de los recursos.}{fig:ev48}
+
+\end{document}

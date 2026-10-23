@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Acceso denegado{% endblock %}
+{% block content %}
+<section class="card error-card">
+  <h1>403 · Acceso denegado</h1>
+  <p>No tienes permiso para acceder a este recurso.</p>
+  <p class="muted">La autorización se valida en el backend.</p>
+  <a class="button" href="{{ url_for('portal.index') }}">Volver</a>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ course.nombre }} · Portal académico{% endblock %}
+{% block content %}
+<h1>{{ course.nombre }}</h1>
+<p class="muted">{{ course.course_id }}</p>
+
+{% for activity in activities %}
+  <section class="card">
+    <h2>{{ activity.titulo }}</h2>
+    <p>{{ activity.descripcion }}</p>
+    <p><strong>Fecha límite:</strong> {{ activity.fecha_limite }}</p>
+
+    {% if session.get("role") == "docente" %}
+      <h3>Entregas</h3>
+      {% set rows = submissions_by_activity.get(activity.activity_id, []) %}
+      {% if rows %}
+        <ul>
+        {% for s in rows %}
+          <li>
+            {{ s.student_id }} · {{ s.estado }}
+            · <a href="{{ url_for('portal.submission_detail', activity_id=s.activity_id, student_id=s.student_id) }}">Revisar</a>
+          </li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p class="muted">Sin entregas.</p>
+      {% endif %}
+    {% endif %}
+  </section>
+{% endfor %}
+{% endblock %}

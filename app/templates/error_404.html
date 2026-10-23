@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}No encontrado{% endblock %}
+{% block content %}
+<section class="card error-card">
+  <h1>404 · Recurso no encontrado</h1>
+  <a class="button" href="{{ url_for('portal.index') }}">Volver</a>
+</section>
+{% endblock %}

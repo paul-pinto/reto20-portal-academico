@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Ingresar · Portal académico{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Ingreso al portal</h1>
+  <p class="muted">Autenticación de demostración para estudiante y docente.</p>
+
+  {% if error %}
+    <div class="alert">{{ error }}</div>
+  {% endif %}
+
+  <form method="post">
+    <label>Usuario</label>
+    <input name="user_id" placeholder="student-001" required>
+
+    <label>Contraseña</label>
+    <input name="password" type="password" required>
+
+    <button type="submit">Ingresar</button>
+  </form>
+
+  <div class="demo">
+    <strong>Usuarios de demostración</strong>
+    <p>student-001 / Demo2026!</p>
+    <p>teacher-001 / Demo2026!</p>
+  </div>
+</section>
+{% endblock %}

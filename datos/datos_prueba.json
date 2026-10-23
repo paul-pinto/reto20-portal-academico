@@ -1,0 +1,160 @@
+{
+  "usuarios": [
+    {
+      "user_id": "profesor-001",
+      "nombre": "Ana Perez",
+      "email": "ana.perez@ucb.edu.bo",
+      "role": "docente",
+      "password": "Demo2026!"
+    },
+    {
+      "user_id": "profesor-002",
+      "nombre": "Carlos Rojas",
+      "email": "carlos.rojas@ucb.edu.bo",
+      "role": "docente",
+      "password": "Demo2026!"
+    },
+    {
+      "user_id": "estudiante-001",
+      "nombre": "Juan Mendoza",
+      "email": "juan.mendoza@ucb.edu.bo",
+      "role": "estudiante",
+      "password": "Demo2026!"
+    },
+    {
+      "user_id": "estudiante-002",
+      "nombre": "Maria Flores",
+      "email": "maria.flores@ucb.edu.bo",
+      "role": "estudiante",
+      "password": "Demo2026!"
+    },
+    {
+      "user_id": "estudiante-003",
+      "nombre": "Pedro Vargas",
+      "email": "pedro.vargas@ucb.edu.bo",
+      "role": "estudiante",
+      "password": "Demo2026!"
+    },
+    {
+      "user_id": "estudiante-004",
+      "nombre": "Lucia Romero",
+      "email": "lucia.romero@ucb.edu.bo",
+      "role": "estudiante",
+      "password": "Demo2026!"
+    }
+  ],
+  "cursos": [
+    {
+      "course_id": "CLOUD101",
+      "nombre": "Computacion en la Nube",
+      "teacher_id": "profesor-001"
+    },
+    {
+      "course_id": "DATA101",
+      "nombre": "Ciencia de Datos",
+      "teacher_id": "profesor-002"
+    }
+  ],
+  "matriculas": [
+    {
+      "course_id": "CLOUD101",
+      "student_id": "estudiante-001"
+    },
+    {
+      "course_id": "CLOUD101",
+      "student_id": "estudiante-002"
+    },
+    {
+      "course_id": "DATA101",
+      "student_id": "estudiante-003"
+    },
+    {
+      "course_id": "DATA101",
+      "student_id": "estudiante-004"
+    }
+  ],
+  "actividades": [
+    {
+      "activity_id": "activity-cloud-01",
+      "course_id": "CLOUD101",
+      "titulo": "Arquitectura basica en AWS",
+      "descripcion": "Disenar una arquitectura basica para una aplicacion academica.",
+      "fecha_limite": "2026-11-05T23:59:00"
+    },
+    {
+      "activity_id": "activity-cloud-02",
+      "course_id": "CLOUD101",
+      "titulo": "Despliegue de aplicacion",
+      "descripcion": "Desplegar una aplicacion web simple en AWS.",
+      "fecha_limite": "2026-11-12T23:59:00"
+    },
+    {
+      "activity_id": "activity-data-01",
+      "course_id": "DATA101",
+      "titulo": "Exploracion de datos",
+      "descripcion": "Realizar analisis exploratorio sobre un conjunto de datos.",
+      "fecha_limite": "2026-11-06T23:59:00"
+    },
+    {
+      "activity_id": "activity-data-02",
+      "course_id": "DATA101",
+      "titulo": "Modelo predictivo",
+      "descripcion": "Construir y evaluar un modelo predictivo sencillo.",
+      "fecha_limite": "2026-11-13T23:59:00"
+    }
+  ],
+  "entregas": [
+    {
+      "activity_id": "activity-cloud-01",
+      "course_id": "CLOUD101",
+      "student_id": "estudiante-001",
+      "s3_key": "entregas/CLOUD101/activity-cloud-01/estudiante-001/arquitectura.pdf",
+      "submitted_at": "2026-10-20T18:30:00",
+      "estado": "entregado"
+    },
+    {
+      "activity_id": "activity-cloud-01",
+      "course_id": "CLOUD101",
+      "student_id": "estudiante-002",
+      "s3_key": "entregas/CLOUD101/activity-cloud-01/estudiante-002/arquitectura.pdf",
+      "submitted_at": "2026-10-20T19:10:00",
+      "estado": "entregado"
+    },
+    {
+      "activity_id": "activity-data-01",
+      "course_id": "DATA101",
+      "student_id": "estudiante-003",
+      "s3_key": "entregas/DATA101/activity-data-01/estudiante-003/eda.pdf",
+      "submitted_at": "2026-10-20T20:00:00",
+      "estado": "entregado"
+    },
+    {
+      "activity_id": "activity-data-01",
+      "course_id": "DATA101",
+      "student_id": "estudiante-004",
+      "s3_key": "entregas/DATA101/activity-data-01/estudiante-004/eda.pdf",
+      "submitted_at": "2026-10-20T20:20:00",
+      "estado": "entregado"
+    }
+  ],
+  "revisiones": [
+    {
+      "activity_id": "activity-cloud-01",
+      "course_id": "CLOUD101",
+      "student_id": "estudiante-001",
+      "teacher_id": "profesor-001",
+      "comentario": "Buen planteamiento de la arquitectura.",
+      "calificacion": 88,
+      "reviewed_at": "2026-10-21T09:00:00"
+    },
+    {
+      "activity_id": "activity-data-01",
+      "course_id": "DATA101",
+      "student_id": "estudiante-003",
+      "teacher_id": "profesor-002",
+      "comentario": "El analisis exploratorio esta bien sustentado.",
+      "calificacion": 91,
+      "reviewed_at": "2026-10-21T09:15:00"
+    }
+  ]
+}

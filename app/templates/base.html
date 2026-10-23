@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Portal académico{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <strong>Portal académico</strong>
+      <span class="muted">Reto 20 · AWS</span>
+    </div>
+    {% if session.get("user_id") %}
+      <div>
+        {{ session.get("nombre") }} · {{ session.get("role") }}
+        <a class="button secondary" href="{{ url_for('portal.logout') }}">Salir</a>
+      </div>
+    {% endif %}
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

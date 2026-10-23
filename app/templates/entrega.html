@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Entrega · Portal académico{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Entrega</h1>
+  <dl>
+    <dt>Estudiante</dt><dd>{{ submission.student_id }}</dd>
+    <dt>Curso</dt><dd>{{ submission.course_id }}</dd>
+    <dt>Actividad</dt><dd>{{ submission.activity_id }}</dd>
+    <dt>Estado</dt><dd>{{ submission.estado }}</dd>
+    <dt>Fecha</dt><dd>{{ submission.submitted_at }}</dd>
+  </dl>
+
+  <a class="button" href="{{ url_for('portal.download_submission', activity_id=submission.activity_id, student_id=submission.student_id) }}">
+    Abrir archivo privado
+  </a>
+</section>
+
+{% if review %}
+<section class="card">
+  <h2>Revisión</h2>
+  <p><strong>Calificación:</strong> {{ review.calificacion }}</p>
+  <p><strong>Comentario:</strong> {{ review.comentario }}</p>
+</section>
+{% endif %}
+{% endblock %}
