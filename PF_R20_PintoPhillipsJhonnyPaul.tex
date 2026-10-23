@@ -7,6 +7,7 @@
 \renewcommand{\familydefault}{\rmdefault}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -35,7 +36,7 @@
     urlcolor=azulAWS,
     citecolor=azulAWS,
     pdftitle={Portal académico en la nube},
-    pdfauthor={Nombre del estudiante}
+    pdfauthor={Jhonny Paul Pinto Phillips}
 }
 
 \graphicspath{{docs/evidencias/}{./}}
@@ -62,6 +63,7 @@
 \newcommand{\subtituloTrabajo}{Reto 20 -- Proyecto Final}
 \newcommand{\autor}{Jhonny Paul Pinto Phillips}
 \newcommand{\correo}{jhonny.pinto@ucb.edu.bo}
+\newcommand{\repositorio}{https://github.com/paul-pinto/reto20-portal-academico}
 \newcommand{\docente}{Fabrizio Gustavo Bellido Parra}
 \newcommand{\fechaEntrega}{23 de octubre de 2026}
 \newcommand{\servicio}[1]{\textbf{#1}}
@@ -122,6 +124,7 @@
 \end{figure}
 }
 
+\setcounter{tocdepth}{2}
 \begin{document}
 
 \begin{titlepage}
@@ -145,9 +148,11 @@
     \begin{tabular}{rl}
         \textbf{Estudiante:} & \autor \\
         \textbf{Correo:} & \correo \\
+        \textbf{Repositorio:} & \href{\repositorio}{github.com/paul-pinto/reto20-portal-academico} \\
         \textbf{Reto:} & Reto 20 -- Portal académico en la nube \\
         \textbf{Docente:} & \docente \\
         \textbf{Fecha:} & \fechaEntrega \\
+        
     \end{tabular}
 
     \vfill
@@ -419,7 +424,7 @@ En una implementación de producción se incorporaría HTTPS, dominio personaliz
 
 \subsection{Limpieza de recursos}
 
-Al finalizar la demostración, los recursos que generan consumo deben ser eliminados o detenidos. La evidencia final se registra en la captura correspondiente al estado de los recursos. Si la instancia debe permanecer disponible hasta la exposición, esta evidencia debe actualizarse inmediatamente después de la defensa.
+Los recursos implementados se mantienen disponibles hasta la realización de la defensa y demostración en AWS, debido a que forman parte de la prueba práctica del proyecto. Una vez concluida la exposición, los recursos que generen consumo serán detenidos o eliminados según corresponda. La evidencia final del estado de los recursos se actualizará inmediatamente después de la defensa, dejando constancia del cierre o detención de la infraestructura utilizada.
 
 \evidenciasafe[0.72\textwidth]{48_estado_final_recursos.png}
 {Estado final de los recursos después de la demostración.}
@@ -442,9 +447,11 @@ Al finalizar la demostración, los recursos que generan consumo deben ser elimin
 \appendix
 \section{Evidencias de implementación}
 
-Las evidencias completas de configuración y funcionamiento se encuentran almacenadas en la carpeta \codigo{docs/evidencias}. En el cuerpo principal se incluyeron únicamente las capturas necesarias para demostrar arquitectura, persistencia, almacenamiento privado, autorización, observabilidad y control de costos.
+Las evidencias completas de configuración y funcionamiento se encuentran almacenadas dentro del repositorio \href{https://github.com/paul-pinto/reto20-portal-academico}
+{\texttt{github.com/paul-pinto/reto20-portal-academico}}
+en la carpeta \codigo{docs/evidencias}. En el cuerpo principal se incluyeron únicamente las capturas necesarias para demostrar arquitectura, persistencia, almacenamiento privado, autorización, observabilidad y control de costos.
 
-Cuando corresponde, las capturas deben conservar visible la región de AWS y la fecha o contexto temporal suficiente para demostrar que pertenecen a la ejecución del proyecto.
+Cuando corresponde, las capturas conservan visible la región de AWS y la fecha o contexto temporal suficiente para demostrar que pertenecen a la ejecución del proyecto.
 
 Como respaldo adicional, el conjunto de evidencias incluye: detalles de EC2 y Security Groups; registros y entidades de DynamoDB; configuración de cifrado, versionado y objetos de S3; pantallas de autenticación y navegación por rol; casos permitidos y denegados; eventos de CloudWatch; estado del CloudWatch Agent, Gunicorn y Nginx; créditos del Learner Lab; y estado final de los recursos.
 
